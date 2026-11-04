@@ -2292,7 +2292,11 @@ const a=document.createElement('a');a.href=url;a.download='respaldo-campus-'+new
 setReport('<strong>Respaldo preparado.</strong> Se exportaron '+Object.keys(entries).length+' registros locales'+(skipped?' ('+skipped+' omitidos)':'')+'. Guardá el archivo en privado y no lo subas a GitHub. Esta copia no incluye IndexedDB ni datos de otros orígenes y no incorpora una función de restauración.');
 });
 })();
-</script>#campus-menu-final {
+</script><style>
+#campus-menu-final {
+  position: sticky;
+  top: 0;
+  z-index: 999999;#campus-menu-final {
   position: sticky;
   top: 0;
   z-index: 999999;
