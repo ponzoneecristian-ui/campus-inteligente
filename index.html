@@ -2292,4 +2292,103 @@ const a=document.createElement('a');a.href=url;a.download='respaldo-campus-'+new
 setReport('<strong>Respaldo preparado.</strong> Se exportaron '+Object.keys(entries).length+' registros locales'+(skipped?' ('+skipped+' omitidos)':'')+'. Guardá el archivo en privado y no lo subas a GitHub. Esta copia no incluye IndexedDB ni datos de otros orígenes y no incorpora una función de restauración.');
 });
 })();
-</script></body></html>
+</script>#campus-menu-final {
+  position: sticky;
+  top: 0;
+  z-index: 999999;
+  background: #071e32;
+  border-bottom: 1px solid #36a9db;
+  padding: 12px;
+  font-family: Arial, sans-serif;
+  color: white;
+}
+
+#campus-menu-final strong {
+  display: block;
+  text-align: center;
+  margin-bottom: 10px;
+  color: #a8eaff;
+}
+
+#campus-menu-final .menu-opciones {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+#campus-menu-final button {
+  background: #123b57;
+  border: 1px solid #398eb8;
+  border-radius: 9px;
+  color: white;
+  padding: 10px 14px;
+  cursor: pointer;
+}
+
+#campus-menu-final button:hover {
+  background: #176c91;
+}
+
+body.campus-menu-activo > :not(#campus-menu-final):not(script):not(style) {
+  display: none !important;
+}
+
+body.campus-menu-activo > .campus-seccion-visible {
+  display: block !important;
+}
+
+body.campus-menu-activo > #campus-menu-final {
+  display: block !important;
+}
+</style>
+
+<nav id="campus-menu-final">
+  <strong>◈ TECNICATURA EN PETRÓLEO Y GAS</strong>
+  <div class="menu-opciones" id="campus-opciones"></div>
+</nav>
+
+<script>
+(function () {
+  const secciones = [
+    ["Inicio", "campus5"],
+    ["Pizarra", "e2stage"],
+    ["Petróleo 3D", "campus-real-3d"],
+    ["Materias", "stage3"],
+    ["Exámenes", "campus-evaluacion-integrada"],
+    ["Laboratorio", "campus-science-suite"],
+    ["Agenda", "campus-agenda-integrada"],
+    ["Biblioteca", "formulaCenter"],
+    ["Repaso", "reviewLab"]
+  ];
+
+  const menu = document.getElementById("campus-opciones");
+  const disponibles = secciones.filter(
+    ([nombre, id]) => document.getElementById(id)
+  );
+
+  if (!disponibles.length) return;
+
+  document.body.classList.add("campus-menu-activo");
+
+  function abrir(id) {
+    document.querySelectorAll(".campus-seccion-visible")
+      .forEach(el => el.classList.remove("campus-seccion-visible"));
+
+    const seccion = document.getElementById(id);
+    if (!seccion) return;
+
+    seccion.classList.add("campus-seccion-visible");
+    window.scrollTo(0, 0);
+  }
+
+  disponibles.forEach(([nombre, id]) => {
+    const boton = document.createElement("button");
+    boton.type = "button";
+    boton.textContent = nombre;
+    boton.onclick = () => abrir(id);
+    menu.appendChild(boton);
+  });
+
+  abrir(disponibles[0][1]);
+})();</body></html>
